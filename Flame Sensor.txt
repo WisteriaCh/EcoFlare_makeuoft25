@@ -1,0 +1,61 @@
+#include <LiquidCrystal.h>
+
+// Initialize LCD (RS, E, D4, D5, D6, D7)
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+int sensorPin = A0;  // Flame sensor connected to A4 (Analog)
+int digitalPin = 6;  // Flame sensor connected to D0 (Digital)
+int sensorValue = 0; // Variable to store sensor value
+int led = 8;         // LED connected to D8
+int buzzer = 7;     // Buzzer connected to pin 12
+
+
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(digitalPin, INPUT);  // Set D0 as input
+  lcd.begin(16, 2);  // Initialize LCD (16x2)
+  lcd.print("System Ready!");  // Initial message
+  delay(2000);
+  lcd.clear();
+}
+
+void loop() {
+  sensorValue = analogRead(sensorPin); // Read flame sensor (Analog)
+  int fireDetected = digitalRead(digitalPin); // Read D0 (Digital)
+
+  // Display sensor value for debugging (optional)
+  lcd.setCursor(0, 0);
+  lcd.print("Analog: ");
+  lcd.print(sensorValue);
+  
+  lcd.setCursor(0, 1);
+  lcd.print("Digital: ");
+  lcd.print(fireDetected);
+  delay(500);
+  lcd.clear();
+
+  // If D0 detects fire or A0 reads low values
+  if (fireDetected == LOW || sensorValue < 100) {
+    lcd.setCursor(0, 0);
+    lcd.print("Fire Detected!");
+    
+    lcd.setCursor(0, 1);
+    lcd.print("LED+Buzzer ON");
+    
+    digitalWrite(led, HIGH);
+    digitalWrite(buzzer, HIGH);
+    delay(1000);
+    
+    digitalWrite(led, LOW);
+    digitalWrite(buzzer, LOW);
+    delay(1000);
+  } else { // No fire detected
+    lcd.setCursor(0, 0);
+    lcd.print("No Fire");
+    digitalWrite(led, LOW);
+    digitalWrite(buzzer, LOW);
+  }
+
+  delay(500);
+}
