@@ -4,8 +4,8 @@
 
 EcoFlare is a smart, eco-friendly fire and charge monitoring system designed to enhance safety and energy efficiency. It mimics the behavior of solar panels using photoresistors (LDRs) to optimize battery charging while reducing wildfire risks through early detection and alerts.
 
-<img src="https://github.com/hyeonjijung1/Past_Project/blob/main/IMG_9424%202.jpg" alt="Project Image" width="500">
-  *Figure 1. Picture of the final project in use.*
+<img src="https://github.com/WisteriaCh/EcoFlare_makeuoft25/blob/main/FinalDesign.JPG" alt="Project Image" width="500">
+  *Figure 1. Picture of the project in use.*
 
 ## 🚀 Features
 
